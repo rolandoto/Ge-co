@@ -1,25 +1,48 @@
-import logo from './logo.svg';
 import './App.css';
+import Navbar from './components/Navbar/Navbar';
+import {BrowserRouter,
+  Routes,
+  Route,
+  Navigate} from "react-router-dom"
+import Home from './page/Home';
+import Portafolio from './page/Potafolio';
+import Register from './page/Register/Register';
+import Login from './page/Login/Login';
+import Panel from './page/Panel/Panel';
+
 
 function App() {
-  return (
+
+
+   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <BrowserRouter>
+          <Navbar/>
+            <Routes>
+                <Route exact path="/" element={<Home />} />
+                <Route exact path="/portafolio" element={<Portafolio />} />
+                <Route exact path="/Register" element={<Register />} />
+                <Route exact path="/login" element={<Login />} />
+                <Route exact path='/panel' element={
+                  <RequireAuth redirectTo={"/login"} >
+                      <Panel />
+                  </RequireAuth>
+                } />
+            </Routes>
+        </BrowserRouter>
     </div>
-  );
+  )
+  
 }
 
 export default App;
+
+
+const Auth = {
+  isLogedIn: () => true
+};
+
+const RequireAuth = ({ children, redirectTo }) => {
+  const isAuthenticated = Auth.isLogedIn();
+  return isAuthenticated ? children : <Navigate to={redirectTo} />;
+};
