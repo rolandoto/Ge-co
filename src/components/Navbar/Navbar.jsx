@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { MdOutlineRestaurantMenu } from 'react-icons/md';
 import images from '../contants/images';
 import {Link} from "react-router-dom"
 import './Navbar.css';
+import AutoProvider from '../../PrivateRoute/AuthContext';
 
 const Navbar = () => {
+
+  const {jwt} = useContext(AutoProvider)
+
   const [toggleMenu, setToggleMenu] = React.useState(false);
   return (
     <nav className="app__navbar">
@@ -13,13 +17,13 @@ const Navbar = () => {
         <img src={images.gericht} alt="app__logo" />
       </div>
       <ul className="app__navbar-links">
-        <li className="p__opensans"><Link to="">Inicio</Link></li>
-        <li className="p__opensans"><Link to="portafolio">Portafolio</Link></li>
+        <li className="p__opensans"><Link to="">{jwt ? null :"Inicio"}</Link></li>
+        <li className="p__opensans"><Link to="portafolio">{jwt ? null : "Portafolio"}</Link></li>
       </ul>
       <div className="app__navbar-login">
-        <Link to="/register" className="p__opensans">Registrarse</Link>
+        <Link to={jwt ? null : "/Register"} className="p__opensans">{jwt ? "Cuenta de empresa" : "Registrarse"}</Link>
         <div />
-        <Link to="/login" className="p__opensans">iniciar Sesion</Link>
+        <Link to={jwt ? null : "/Login"} className="p__opensans">{jwt ? "Nombre de la empresa" : "Iniciar Sesion"}</Link>
       </div>
       <div className="app__navbar-smallscreen">
         <GiHamburgerMenu color="#fff" fontSize={27} onClick={() => setToggleMenu(true)} />

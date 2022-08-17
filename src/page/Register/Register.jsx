@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import "./Register.css"
-import {useNavigate}  from "react-router-dom"
+import {useHistory}  from "react-router-dom"
 
 const Register =() =>{
 
-  const navigate = useNavigate()
-
+  const navigate = useHistory()
 
   const initialValues = { username: "", email: "", password: "" };
   const [formValues, setFormValues] = useState(initialValues);
@@ -51,7 +50,7 @@ const Register =() =>{
   };
 
   const handNextLogin =() =>{
-    navigate("/Login")
+    navigate.push("/Login")
   }
 
   return (
