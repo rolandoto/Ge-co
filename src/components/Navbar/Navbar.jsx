@@ -8,7 +8,10 @@ import AutoProvider from '../../PrivateRoute/AuthContext';
 
 const Navbar = () => {
 
-  const {jwt} = useContext(AutoProvider)
+  const {jwt,setJwt} = useContext(AutoProvider)
+  console.log(jwt)
+
+
 
   const [toggleMenu, setToggleMenu] = React.useState(false);
   return (
@@ -23,7 +26,9 @@ const Navbar = () => {
       <div className="app__navbar-login">
         <Link to={jwt ? null : "/Register"} className="p__opensans">{jwt ? "Cuenta de empresa" : "Registrarse"}</Link>
         <div />
-        <Link to={jwt ? null : "/Login"} className="p__opensans">{jwt ? "Nombre de la empresa" : "Iniciar Sesion"}</Link>
+        <Link to={jwt ? null : "/Login"} className="p__opensans">{jwt ? jwt.result.namecompany : "Iniciar Sesion"}</Link>
+
+        <Link to="#" className="p__opensans">{jwt ? <span onClick={() => setJwt(null)}  >salir</span> : null}</Link>
       </div>
       <div className="app__navbar-smallscreen">
         <GiHamburgerMenu color="#fff" fontSize={27} onClick={() => setToggleMenu(true)} />

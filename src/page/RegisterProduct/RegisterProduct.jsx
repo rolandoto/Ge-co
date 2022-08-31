@@ -3,9 +3,8 @@ import { useState, useEffect } from "react";
 import {useHistory}  from "react-router-dom"
 
 const RegisterProduct =() =>{
-
+  
   const navigate = useHistory()
-
   const initialValues = { username: "", email: "", password: "" };
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState({});
@@ -54,7 +53,7 @@ const RegisterProduct =() =>{
   }
 
   return (
-    <div className="container">
+    <div className="container-flex">
       <form onSubmit={handleSubmit}>
         <h1>Registrar Producto</h1>
         <div className="ui divider"></div>
