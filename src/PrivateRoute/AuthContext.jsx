@@ -13,7 +13,6 @@ export const AutoProvider =({children}) =>{
             () =>  JSON.parse(sessionStorage.getItem('jwt')) 
         )
     
-        
     const [show,setShow]= useState(false)
     
     useEffect(() =>{

@@ -15,10 +15,7 @@ const Panel =() =>{
 
     return (
         <div className="container-panel" >
-                <button className={state  ?`button-one`:"button-" } onClick={() => setState(true)}  >Productos</button>
-                <button className={state  ?`button-`:"button-one"} onClick={() => setState(false)}   >Provedores</button>
-
-                {state ? <Product name={"productos"} /> : <Product name={"provedores"} /> }  
+                
         </div>
     )
 }

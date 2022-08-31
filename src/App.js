@@ -7,13 +7,14 @@ import Home from './page/Home';
 import Portafolio from './page/Potafolio';
 import Register from './page/Register/Register';
 import Login from './page/Login/Login';
-import Panel from './page/Panel/Panel';
 import { AutoProvider } from './PrivateRoute/AuthContext';
 import { PrivateRoute } from './PrivateRoute/PrivateRoute';
-import RegisterProduct from './page/RegisterProduct/RegisterProduct';
-import RegisterProvedor from './page/RegisterProvedor/RegisterProvedor';
-import Sidebar from './components/sidebar/sidebar';
-
+import Product from './page/Product/Product';
+import SubirProduct from './page/SubirProduct/SubirProduct';
+import Provedor from './page/Provedor/Provedor';
+import SubirProvedor from './page/SubirProvedor/SubirProvedor';
+import SearchResult from './page/SearchResult/SearchResult';
+import SearchProduct from './page/SearchProduct/SearchProduct';
 
 function App() {
 
@@ -21,14 +22,19 @@ function App() {
     <div className="App">
       <AutoProvider>
         <BrowserRouter>
+            <Navbar />
             <Switch>
                 <Route exact path="/" component={Home} />
                 <Route exact path="/portafolio" component={Portafolio} />
                 <Route exact path="/Register" component={Register} />
                 <Route exact path="/login" component={Login} />
-                <PrivateRoute exact path="/registerproduct" component={RegisterProduct} />
-                <PrivateRoute exact path="/registerprovedor" component={RegisterProvedor} />
-                <PrivateRoute exact path='/panel' component={Panel} />
+                <PrivateRoute exact path='/producto' component={Product} />
+                <PrivateRoute exact path='/SubirProducto' component={SubirProduct} />
+                <PrivateRoute exact path='/Provedor' component={Provedor} />
+                <PrivateRoute exact path='/SubirProvedor' component={SubirProvedor} />
+                <PrivateRoute exact path='/SeachResult/:id' component={SearchResult} />
+                <PrivateRoute exact path='/SeachResultProduct/:id' component={SearchProduct} />
+
             </Switch>
         </BrowserRouter>
       </AutoProvider>

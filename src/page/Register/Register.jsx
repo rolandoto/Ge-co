@@ -1,132 +1,133 @@
 import { useState, useEffect } from "react";
 import "./Register.css"
 import {useHistory}  from "react-router-dom"
+import RegisterService from "../../Service/RegisterService";
 
 const Register =() =>{
 
   const navigate = useHistory()
 
-  const initialValues = { username: "", email: "", password: "" };
-  const [formValues, setFormValues] = useState(initialValues);
-  const [formErrors, setFormErrors] = useState({});
-  const [isSubmit, setIsSubmit] = useState(false);
+  const [datos, setDatos] = useState({
+    namecompany:"",
+    namecolaborador: "",
+    lastname:"",
+    address:"",
+    phone:"",
+    email:"",
+    password:""
+})
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormValues({ ...formValues, [name]: value });
-  };
+
+const handleInputChange = (event) => {
+    setDatos({
+        ...datos,
+        [event.target.name] : event.target.value
+    })
+}
+
+  const [loading,setLoading] =useState(false)
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setFormErrors(validate(formValues));
-    setIsSubmit(true);
+    RegisterService(datos).then(index =>{
+      console.log(index)
+      setLoading(true)
+    }).catch(e =>{
+      setLoading(false)
+    })
   };
 
-  useEffect(() => {
-    console.log(formErrors);
-    if (Object.keys(formErrors).length === 0 && isSubmit) {
-      console.log(formValues);
-    }
-  }, [formErrors]);
-  const validate = (values) => {
-    const errors = {};
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-    if (!values.username) {
-      errors.username = "Username is required!";
-    }
-    if (!values.email) {
-      errors.email = "Email is required!";
-    } else if (!regex.test(values.email)) {
-      errors.email = "This is not a valid email format!";
-    }
-    if (!values.password) {
-      errors.password = "Password is required";
-    } else if (values.password.length < 4) {
-      errors.password = "Password must be more than 4 characters";
-    } else if (values.password.length > 10) {
-      errors.password = "Password cannot exceed more than 10 characters";
-    }
-    return errors;
-  };
-
+ 
   const handNextLogin =() =>{
     navigate.push("/Login")
   }
 
+  console.log(datos)
+
   return (
     <div className="container">
+      {loading ?  <h1>registrado</h1>:
       <form onSubmit={handleSubmit}>
         <h1>Registrase</h1>
         <div className="ui divider"></div>
         <div className="ui form">
+        <div className="field">
+            <label>Nombre de la empresa</label>
+            <input
+              type="text"
+              name="namecompany"
+              placeholder="Nombre del empresa"
+              value={datos.namecompany}
+              onChange={handleInputChange}
+            />
+          </div>
           <div className="field">
             <label>Nombre del colaborador</label>
             <input
               type="text"
-              name="nombre del colaborador"
+              name="namecolaborador"
               placeholder="Nombre del colaborador"
-              value={formValues.username}
-              onChange={handleChange}
+              value={datos.namecolaborador}
+              onChange={handleInputChange}
             />
           </div>
-          <p>{formErrors.username}</p>
           <div className="field">
             <label>Apellido del colaborador</label>
             <input
               type="text"
-              name="Apellido del colaborador"
+              name="lastname"
               placeholder="Apellido del colaborador"
-              value={formValues.email}
-              onChange={handleChange}
+              value={datos.lastname}
+              onChange={handleInputChange}
             />
           </div>
-          <p>{formErrors.email}</p>
           <div className="field">
             <label>Direccion</label>
             <input
-              type="password"
-              name="Direccion"
+              type="text"
+              name="address"
               placeholder="Direccion"
-              value={formValues.password}
-              onChange={handleChange}
+              value={datos.address}
+              onChange={handleInputChange}
             />
           </div>
           <div className="field">
             <label>Telefono</label>
             <input
-              type="password"
-              name="Telefono"
+              type="text"
+              name="phone"
               placeholder="Telefono"
-              value={formValues.password}
-              onChange={handleChange}
+              value={datos.phone}
+              onChange={handleInputChange}
             />
           </div>
           <div className="field">
             <label>Correo</label>
             <input
-              type="password"
-              name="Correo"
+              type="text"
+              name="email"
               placeholder="Correo"
-              value={formValues.password}
-              onChange={handleChange}
+              value={datos.email}
+              onChange={handleInputChange}
             />
           </div>
           <div className="field">
             <label>Contraseña</label>
             <input
               type="password"
-              name="Contraseña"
+              name="password"
               placeholder="Contraseña"
-              value={formValues.password}
-              onChange={handleChange}
+              value={datos.password}
+              onChange={handleInputChange}
             />
           </div>
-          <p>{formErrors.password}</p>
+        
           <button className="fluid ui button ">Crear cuenta</button>
-          <p>{formErrors.password}</p>
+     
           <button className="fluid ui button yellow" onClick={handNextLogin} >Ya tengo cuenta</button>
         </div>
       </form>
+        }
     </div>
   );
 }

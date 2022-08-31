@@ -8,6 +8,10 @@
   align-items: center;
 }
 
+body{
+  background: rgb(227, 223, 223) !important;
+}
+
 .app__bg {
 
   background-position: center;
@@ -174,4 +178,149 @@
     font-size: 45px;
     line-height: 70px;
   }
+}
+
+
+
+ul {
+  list-style: none;
+}
+.search li{
+  background-color: #222;
+  color: white;
+  margin: 10px 0;
+  padding: 10px;
+  font-size: 22px;
+  cursor: pointer;
+  width: 36%;
+  display: flex;
+  justify-content: space-around;
+  margin: auto;
+  padding: 11px;
+}
+input {
+  width: 20%;
+  padding: 10px;
+  margin: 0 auto;
+  display: block;
+  font-family: monospace;
+  font-size: 18px;
+  transition: all 0.3s ease-in-out;
+}
+
+
+.container-flex{
+  display: flex;
+  justify-content: center;
+}
+
+.bordere{
+  border: solid black;
+}
+
+.border-2{
+  border: solid black;
+}
+
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.container-table{
+  display: flex;
+  justify-content: center;
+}
+
+.checked-item {
+  text-decoration: line-through;
+}
+
+
+
+.app-container{
+  font-family: sans-serif;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+.title {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+.list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-left: 20px;
+}
+.checked-item,
+.not-checked-item {
+  margin-left: 10px;
+}
+.checked-item {
+  text-decoration: line-through;
+}
+.provedor-check{
+  display: flex;
+}
+
+.to{
+  margin-top: 50px;
+}
+
+.line-green{
+  background: green !important;
+}
+
+.flex-portafolio{
+  display: flex;
+}
+
+
+.card-portafolio{
+  padding: 28px;
+  background: yellow;
+  margin: 10px;
+}
+
+.card-portafolio p{
+  color: black;
+  font-size: 15px;
+  text-align: justify;
+}
+
+
+.container-flex{
+
+
+}
+
+.provedor-image{
+  width: 60px;
+}
+
+.pro{
+  margin-top: 57%;
+}
+
+.prod{
+  margin-top: 200%;
+  overflow: scroll;
 }

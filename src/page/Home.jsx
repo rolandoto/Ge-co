@@ -1,15 +1,17 @@
 import React from "react"
-import Expenses from "../components/expenses/expense"
-import Navbar from "../components/Navbar/Navbar"
-import Sidebar from "../components/sidebar/sidebar"
+import image  from "../components/contants/images"
+import   "./Home.css"
 
 const Home =() =>{
-
+    
+  
     return (
         <div>
-            <Navbar />
-            <Sidebar />
-            <Expenses/>
+          <div class="pic-ctn">
+            <img src={image.slide1} alt="" class="pic" />
+            <img src={image.slide2} alt="" class="pic"/>
+            <img src={image.slide3} alt="" class="pic " />
+          </div>
         </div>
     )
 }
