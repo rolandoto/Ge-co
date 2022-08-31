@@ -180,7 +180,9 @@ body{
   }
 }
 
-
+.lo{
+  display: flex;
+}
 
 ul {
   list-style: none;
